@@ -1,5 +1,9 @@
+function install-rvm() {
+    bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+}
+
 ##
-# Install RVM
+# Setup RVM
 ##
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session
 
@@ -8,4 +12,3 @@ fpath=("$HOME/.rvm/scripts/zsh/Completion" $fpath)
 autoload -U compinit
 compinit -i
 
-echo "RVM installed"
