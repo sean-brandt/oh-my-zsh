@@ -27,6 +27,10 @@
 #   Florent Thoumie and Jonas Pfenniger
 #
 
+local SSH_ENV=$HOME/.ssh/environment
+local OS=`uname`
+local SSH_ADD_ARGS=""
+[[ "$OS" == "Darwin" && "$SSH_AGENT_FROM_KEYCHAIN" == "1" ]] && local SSH_ADD=" -k"
 local _plugin__ssh_env=$HOME/.ssh/environment-$HOST
 local _plugin__forwarding
 
