@@ -46,13 +46,14 @@ zdotdirpath=($HOME/.home/sh/zsh $ZDOTDIR)
 
 [[ -e $zdotdir/.shared_env ]] && . $zdotdir/.shared_env
 
-sh_load_status "***** .zshenv"
+sh_load_status "$0"
 
 setopt extended_glob
 
-sh_load_status "search paths"
 
 # {{{ path
+
+sh_load_status "search paths"
 
 typeset -U path # No duplicates
 
