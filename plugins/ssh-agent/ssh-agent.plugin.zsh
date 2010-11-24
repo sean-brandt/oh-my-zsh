@@ -2,6 +2,9 @@
 # http://www.cygwin.com/ml/cygwin/2001-06/msg00537.html
 
 
+# We're being passed an agent socket
+[ -n "$SSH_CLIENT" -a -n "$SSH_AUTH_SOCK" ] && return 0
+
 local SSH_ENV=$HOME/.ssh/environment
 local OS=`uname`
 local SSH_ADD_ARGS=""
@@ -24,4 +27,5 @@ if [ -f "${SSH_ENV}" ]; then
 else
   start_agent;
 fi
+
 
