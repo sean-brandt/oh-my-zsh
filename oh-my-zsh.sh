@@ -6,6 +6,8 @@ fi
 
 # Initializes Oh My Zsh
 
+sh_load_status "$0"
+
 # add a function path
 fpath=($ZSH/functions $ZSH/completions $fpath)
 
