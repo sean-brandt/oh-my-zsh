@@ -20,12 +20,15 @@
 #
 # CREDITS
 #
-#   Based on code from Joseph M. Reagle
-#   http://www.cygwin.com/ml/cygwin/2001-06/msg00537.html
+# Based on code from Joseph M. Reagle
+# http://www.cygwin.com/ml/cygwin/2001-06/msg00537.html
 #
 #   Agent forwarding support based on ideas from
 #   Florent Thoumie and Jonas Pfenniger
 #
+
+# We're being passed an agent socket
+[ -n "$SSH_CLIENT" -a -n "$SSH_AUTH_SOCK" ] && return 0
 
 local SSH_ENV=$HOME/.ssh/environment
 local OS=`uname`
@@ -62,7 +65,7 @@ if [[ ${_plugin__forwarding} == "yes" && -n "$SSH_AUTH_SOCK" ]]; then
   [[ -L $SSH_AUTH_SOCK ]] || ln -sf "$SSH_AUTH_SOCK" /tmp/ssh-agent-$USER-screen
 
 elif [ -f "${_plugin__ssh_env}" ]; then
-  # Source SSH settings, if applicable
+# Source SSH settings, if applicable
   . ${_plugin__ssh_env} > /dev/null
   ps x | grep ${SSH_AGENT_PID} | grep ssh-agent > /dev/null || {
     _plugin__start_agent;
