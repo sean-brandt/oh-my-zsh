@@ -27,6 +27,7 @@
 #   Florent Thoumie and Jonas Pfenniger
 #
 
+set -o xtrace
 # We're being passed an agent socket
 [ -n "$SSH_CLIENT" -a -n "$SSH_AUTH_SOCK" ] && return 0
 
