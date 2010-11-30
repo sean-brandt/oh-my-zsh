@@ -2,7 +2,6 @@
 # http://www.cygwin.com/ml/cygwin/2001-06/msg00537.html
 
 
-set -o xtrace
 # We're being passed an agent socket
 [ -n "$SSH_CLIENT" -a -n "$SSH_AUTH_SOCK" ] && return 0
 
@@ -29,5 +28,3 @@ else
   start_agent;
 fi
 
-
-set +o xtrace
