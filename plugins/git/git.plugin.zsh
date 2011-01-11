@@ -1,4 +1,5 @@
 # Aliases
+[[ -x `which hub` ]] && function git(){hub "$@"}
 alias g='git'
 alias gst='git status'
 alias gl='git pull'
