@@ -6,6 +6,7 @@
 # {{{ Specific to hosts
 
 run_local_hooks .zshenv
+run_local_hooks .zshrc
 
 # }}}
 
