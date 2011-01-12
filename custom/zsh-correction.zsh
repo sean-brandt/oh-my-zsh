@@ -1,1 +1,1 @@
-alias git='nocorrect git'
+#alias git='nocorrect git'
