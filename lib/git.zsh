@@ -5,7 +5,7 @@ function git_prompt_info() {
 }
 
 parse_git_dirty () {
-  if [[ -n $(git status -s 2> /dev/null) ]]; then
+  if [ "$ZSH_GIT_PROMPT_SHOW_DIRTY" ] && [[ -n $(git status -s 2> /dev/null) ]]; then
     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
   else
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
