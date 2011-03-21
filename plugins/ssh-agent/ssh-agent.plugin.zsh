@@ -5,7 +5,7 @@
 # We're being passed an agent socket
 [ -n "$SSH_CLIENT" -a -n "$SSH_AUTH_SOCK" ] && return 0
 
-local SSH_ENV=$HOME/.ssh/environment
+local SSH_ENV=$HOME/.ssh/environment-$HOST
 local OS=`uname`
 local SSH_ADD_ARGS=""
 [[ "$OS" == "Darwin" && "$SSH_AGENT_FROM_KEYCHAIN" == "1" ]] && local SSH_ADD_ARGS="-k"

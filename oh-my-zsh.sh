@@ -1,7 +1,5 @@
 # Initializes Oh My Zsh
 
-sh_load_status "$0"
-
 # add a function path
 fpath=($ZSH/functions $fpath)
 
@@ -15,6 +13,9 @@ for config_file ($ZSH/custom/*.zsh) source $config_file
 # Load all of the plugins that were defined in ~/.zshrc
 plugin=${plugin:=()}
 for plugin ($plugins) source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+
+# Load the theme
+source "$ZSH/themes/$ZSH_THEME.zsh-theme"
 
 # Check for updates on initial load...
 if [ "$DISABLE_AUTO_UPDATE" = "true" ]

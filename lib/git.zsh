@@ -5,36 +5,62 @@ function git_prompt_info() {
 }
 
 parse_git_dirty () {
-  if [ "$ZSH_GIT_PROMPT_SHOW_DIRTY" ] && [[ -n $(git status -s 2> /dev/null) ]]; then
+  if [[ $ZSH_THEME_SHOW_GIT_DIRTY == 1 ]] ; then
+  if [[ -n $(git status -s 2> /dev/null) ]]; then
     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  fi
   else
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
   fi
 }
 
 # get the status of the working tree
-git_prompt_status() {
+fgit_prompt_status() {
   INDEX=$(git status --porcelain 2> /dev/null)
   STATUS=""
   if $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
+    echo $STATUS
+    return
   fi
   if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
+    echo $STATUS
+    return
   elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
+    echo $STATUS
+    return
   fi
   if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    echo $STATUS
+    return
+  elif $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
+    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    echo $STATUS
+    return
+  elif $(echo "$INDEX" | grep '^ T ' &> /dev/null); then
+    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    echo $STATUS
+    return
   fi
   if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_RENAMED$STATUS"
+    echo $STATUS
+    return
   fi
   if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
+    echo $STATUS
+    return
   fi
   if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
     STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED$STATUS"
+    echo $STATUS
+    return
   fi
   echo $STATUS
 }
