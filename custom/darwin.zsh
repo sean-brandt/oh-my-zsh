@@ -11,7 +11,7 @@ DARWIN_TEMP_DIR=$(getconf DARWIN_USER_TEMP_DIR)
 #{{{ Darwin Temp Dir 
 
 # set up SSH auth sock symlink for byobu
-test $SSH_AUTH_SOCK && ln -sf "$SSH_AUTH_SOCK" "${DARWIN_TEMP_DIR}/byobu.ssh-agent"
+#test $SSH_AUTH_SOCK && ln -sf "$SSH_AUTH_SOCK" "${DARWIN_TEMP_DIR}/byobu.ssh-agent"
 
 #}}}
 

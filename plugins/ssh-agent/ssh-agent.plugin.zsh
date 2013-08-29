@@ -37,7 +37,7 @@ function _plugin__start_agent()
   zstyle -s :omz:plugins:ssh-agent lifetime lifetime
   local OS=`uname`
   local SSH_ADD_ARGS=""
-  [[ "$OS" == "Darwin" && "$SSH_AGENT_FROM_KEYCHAIN" == "1" ]] && local SSH_ADD_ARGS="-k"
+  [[ "$OS" == "Darwin" && "$SSH_AGENT_FROM_KEYCHAIN" == "1" ]] && local SSH_ADD_ARGS="-A"
 
   # start ssh-agent and setup environment
   /usr/bin/env ssh-agent ${lifetime:+-t} ${lifetime} | sed 's/^echo/#echo/' > ${_plugin__ssh_env}
