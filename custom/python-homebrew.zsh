@@ -2,6 +2,9 @@
 # Allow disabling of entire environment suite
 [ -n "$INHERIT_ENV" ] && return 0
 
+python_config=`brew list python |grep python-config |grep -v Frameworks`
 
-PYTHON_HOME=$(python-config --prefix)
-path=($PYTHON_HOME/bin $path)
+if [ -f "$python_config" ]; then
+  PYTHON_HOME=`$python_config --prefix`
+  path=($PYTHON_HOME/bin $path)
+fi
