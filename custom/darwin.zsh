@@ -42,3 +42,7 @@ function spgrep() {
 
 #}}}
 
+
+#{{{ secure remove file / shred
+[[ -x /usr/bin/srm ]] && alias shred='srm'
+#}}}
