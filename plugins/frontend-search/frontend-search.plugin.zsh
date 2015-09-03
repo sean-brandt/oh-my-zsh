@@ -2,14 +2,6 @@
 
 function frontend() {
 
-  # get the open command
-  local open_cmd
-  if [[ $(uname -s) == 'Darwin' ]]; then
-    open_cmd='open'
-  else
-    open_cmd='xdg-open'
-  fi
-
   # no keyword provided, simply show how call methods
   if [[ $# -le 1 ]]; then
     echo "Please provide a search-content and a search-term for app.\nEx:\nfrontend <search-content> <search-term>\n"
@@ -17,7 +9,7 @@ function frontend() {
   fi
 
   # check whether the search engine is supported
-  if [[ ! $1 =~ '(jquery|mdn|compass|html5please|caniuse|aurajs|dartlang|qunit|fontello|bootsnipp|cssflow|codepen|unheap|bem|smacss|angularjs|reactjs|emberjs)' ]];
+  if [[ ! $1 =~ '(jquery|mdn|compass|html5please|caniuse|aurajs|dartlang|qunit|fontello|bootsnipp|cssflow|codepen|unheap|bem|smacss|angularjs|reactjs|emberjs|stackoverflow|npmjs)' ]];
   then
     echo "Search valid search content $1 not supported."
     echo "Valid contents: (formats 'frontend <search-content>' or '<search-content>')"
@@ -40,6 +32,8 @@ function frontend() {
     echo "* angularjs"
     echo "* reactjs"
     echo "* emberjs"
+    echo "* stackoverflow"
+    echo "* npmjs"
     echo ""
 
     return 1
@@ -103,13 +97,19 @@ function frontend() {
     "emberjs")
       url="${url}emberjs.com"
       url="${url}/api/#stq=$2&stp=1" ;;
+    "stackoverflow")
+      url="${url}stackoverflow.com"
+      url="${url}/search?q=$2" ;;
+    "npmjs")
+      url="${url}www.npmjs.com"
+      url="${url}/search?q=$2" ;;
     *) echo "INVALID PARAM!"
        return ;;
   esac
 
   echo "$url"
 
-  $open_cmd "$url"
+  open_command "$url"
 
 }
 
@@ -149,3 +149,7 @@ alias smacss='frontend smacss'
 alias angularjs='frontend angularjs'
 alias reactjs='frontend reactjs'
 alias emberjs='frontend emberjs'
+
+# search websites
+alias stackoverflow='frontend stackoverflow'
+alias npmjs='frontend npmjs'
