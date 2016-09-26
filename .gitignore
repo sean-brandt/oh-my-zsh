@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 locals.zsh
 log/.zsh_history
 projects.zsh
 *.swp
+=======
+# custom files
+custom/
+!custom/plugins/example
+!custom/example.zsh
+
+# temp files directories
+>>>>>>> 57fcee0f1c520a7c5e3aa5e2bde974154cdaf0c3
 cache/
+log/
